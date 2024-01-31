@@ -5,7 +5,6 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -52,8 +51,6 @@ public class PlayerProtectionLayer implements Listener {
                 Bukkit.broadcast(Component.text(ChatColor.RED + "소다맛 완두콩팀 의 파일런이 파괴되었습니다!"));
             } else if(Whiteforest.plugin.getData().getInt("Jun09743.beaconPos.x") == breakX && Whiteforest.plugin.getData().getInt("Jun09743.beaconPos.y") == breakY && Whiteforest.plugin.getData().getInt("Jun09743.beaconPos.z") == breakZ) {
                 Bukkit.broadcast(Component.text(ChatColor.RED + "히틀니팀 의 파일런이 파괴되었습니다!"));
-            } else if(Whiteforest.plugin.getData().getInt("notSongro_.beaconPos.x") == breakX && Whiteforest.plugin.getData().getInt("notSongro_.beaconPos.y") == breakY && Whiteforest.plugin.getData().getInt("notSongro_.beaconPos.z") == breakZ) {
-                Bukkit.broadcast(Component.text(ChatColor.RED + "teamdummy 의 파일런이 파괴되었습니다!"));
             }
         }
     }

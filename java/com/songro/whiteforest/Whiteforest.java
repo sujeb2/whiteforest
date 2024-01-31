@@ -1,5 +1,6 @@
 package com.songro.whiteforest;
 
+import com.songro.whiteforest.event.player.LeadPlayerBeacon;
 import com.songro.whiteforest.event.player.PlayerProtectionLayer;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -26,6 +27,7 @@ public final class Whiteforest extends JavaPlugin {
 
         try {
             getServer().getPluginManager().registerEvents(new PlayerProtectionLayer(), this);
+            getServer().getPluginManager().registerEvents(new LeadPlayerBeacon(), this);
         } catch (Exception e) {
             e.printStackTrace();
         }
