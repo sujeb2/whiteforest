@@ -1,0 +1,4 @@
+name: Whiteforest
+version: '${project.version}'
+main: com.songro.whiteforest.Whiteforest
+api-version: '1.19'

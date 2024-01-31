@@ -1,0 +1,44 @@
+Star_Sara:
+    isLeader: true
+    beaconPos:
+      x: 0
+      y: 0
+      z: 0
+    team: "sosumi"
+
+_Winter__:
+    isLeader: false
+    team: "sosumi"
+    skindata: "Star_Sara"
+
+tyi_kia:
+    isLeader: false
+    team: "sosumi"
+    skindata: "Star_Sara"
+
+two6ean:
+    isLeader: true
+    beaconPos:
+      x: 0
+      y: 0
+      z: 0
+    team: "sodabean"
+    skindata: "two6ean"
+
+_Devil_Stars_:
+    isLeader: true
+    beaconPos:
+      x: 0
+      y: 0
+      z: 0
+    team: "peace"
+    skindata: "_Devil_Stars_"
+
+notSongro_:
+  isLeader: true
+  beaconPos:
+    x: 0
+    y: 0
+    z: 0
+  team: "hitullni"
+  skindata: "notSongro_"
