@@ -13,7 +13,7 @@ _Winter__:
 
 tyi_kia:
     isLeader: false
-    team: "sosumi"
+    team: "peace"
     skindata: "Star_Sara"
 
 two6ean:
@@ -24,6 +24,14 @@ two6ean:
       z: 0
     team: "sodabean"
     skindata: "two6ean"
+
+Horing1807:
+  isLeader: false
+  team: "peace"
+
+tmon1031:
+  isLeader: false
+  team: "peace"
 
 _Devil_Stars_:
     isLeader: true
@@ -42,3 +50,19 @@ notSongro_:
     z: 0
   team: "hitullni"
   skindata: "notSongro_"
+
+do_gi:
+  isLeader: false
+  team: "sodabean"
+
+hanyul0967:
+  isLeader: false
+  team: "sodabean"
+
+s5779:
+  isLeader: false
+  team: "sodabean"
+
+Dakeberry:
+  isLeader: false
+  team: "sosumi"

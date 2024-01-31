@@ -12,6 +12,7 @@ public class Pailon {
     public Inventory pailonGUI() {
         Inventory inv = Bukkit.createInventory(null, 9, ChatColor.BOLD + "파일런");
         inv.setItem(1, reliveTeam());
+        inv.setItem(4, expShop());
 
         return inv;
     }
@@ -19,7 +20,15 @@ public class Pailon {
     private ItemStack reliveTeam() {
         ItemStack relive = new ItemStack(Material.TOTEM_OF_UNDYING, 1);
         ItemMeta reliveMeta = relive.getItemMeta();
-        reliveMeta.setDisplayName(ChatColor.GREEN + "[ 팀원 예토전생 ]");
+        reliveMeta.setDisplayName(ChatColor.GREEN + "팀원 소환");
+
+        return relive;
+    }
+
+    private ItemStack expShop() {
+        ItemStack relive = new ItemStack(Material.EXPERIENCE_BOTTLE, 1);
+        ItemMeta reliveMeta = relive.getItemMeta();
+        reliveMeta.setDisplayName(ChatColor.YELLOW + "경험치 상점");
 
         return relive;
     }
