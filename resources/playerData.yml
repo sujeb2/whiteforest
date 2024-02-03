@@ -1,10 +1,8 @@
 Star_Sara:
     isLeader: true
-    beaconPos:
-      x: 0
-      y: 0
-      z: 0
+    beaconLeft: 0
     team: "sosumi"
+    gotPailon: false
 
 _Winter__:
     isLeader: false
@@ -18,12 +16,10 @@ tyi_kia:
 
 two6ean:
     isLeader: true
-    beaconPos:
-      x: 0
-      y: 0
-      z: 0
+    beaconLeft: 0
     team: "sodabean"
     skindata: "two6ean"
+    gotPailon: false
 
 Horing1807:
   isLeader: false
@@ -35,21 +31,17 @@ tmon1031:
 
 _Devil_Stars_:
     isLeader: true
-    beaconPos:
-      x: 0
-      y: 0
-      z: 0
+    beaconLeft: 0
     team: "peace"
     skindata: "_Devil_Stars_"
+    gotPailon: false
 
 notSongro_:
   isLeader: true
-  beaconPos:
-    x: 0
-    y: 0
-    z: 0
+  beaconLeft: 0
   team: "hitullni"
   skindata: "notSongro_"
+  gotPailon: false
 
 do_gi:
   isLeader: false
@@ -66,3 +58,22 @@ s5779:
 Dakeberry:
   isLeader: false
   team: "sosumi"
+
+
+teams:
+  sosumi:
+    x: 0
+    y: 0
+    z: 0
+  sodebean:
+    x: 0
+    y: 0
+    z: 0
+  hitullni:
+    x: 0
+    y: 0
+    z: 0
+  peace:
+    x: 0
+    y: 0
+    z: 0
