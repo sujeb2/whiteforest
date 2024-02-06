@@ -1,13 +1,13 @@
 package com.songro.whiteforest;
 
-import com.songro.whiteforest.event.gui.ReliveClickEvent;
-import com.songro.whiteforest.event.pailon.PailonClickEvent;
+import com.songro.whiteforest.event.pailon.PailonBreakEvent;
 import com.songro.whiteforest.event.player.CreationOfBannedItem;
 import com.songro.whiteforest.event.player.LeadPlayerBeacon;
 import com.songro.whiteforest.event.pailon.PailonSystem;
 import com.songro.whiteforest.event.player.SetJoinMsgNull;
 import com.songro.whiteforest.event.player.isDead;
-import com.songro.whiteforest.repeat.IfPlayerNearBeacon;
+import com.songro.whiteforest.repeat.IfPlayerNearBeaconHitullni;
+import com.songro.whiteforest.repeat.IfPlayerNearBeaconSosumi;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -40,16 +40,23 @@ public final class Whiteforest extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new LeadPlayerBeacon(), this);
             getServer().getPluginManager().registerEvents(new SetJoinMsgNull(), this);
             getServer().getPluginManager().registerEvents(new isDead(), this);
-            //getServer().getPluginManager().registerEvents(new PailonClickEvent(), this);
+            getServer().getPluginManager().registerEvents(new PailonBreakEvent(), this);
             //getServer().getPluginManager().registerEvents(new ReliveClickEvent(), this);
             getServer().getPluginManager().registerEvents(new CreationOfBannedItem(), this);
 
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    new IfPlayerNearBeacon().checkPlayer();
+                    new IfPlayerNearBeaconSosumi().checkPlayer();
                 }
-            }.runTaskTimerAsynchronously(this, 0, 20);
+            }.runTaskTimer(this, 0, 20);
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    new IfPlayerNearBeaconHitullni().checkPlayer();
+                }
+            }.runTaskTimer(this, 0, 20);
         } catch (Exception e) {
             e.printStackTrace();
         }
