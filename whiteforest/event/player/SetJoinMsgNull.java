@@ -41,6 +41,10 @@ public class SetJoinMsgNull implements Listener {
                 p.setDisplayName(ChatColor.YELLOW + p.getName());
                 break;
         }
+
+        if(Whiteforest.plugin.getData().getBoolean(p.getName() + ".isLeader") && !Whiteforest.plugin.getData().getBoolean(p.getName() + ".gotPailon")) {
+            p.getInventory().addItem(new ItemStack(Material.BEACON));
+        }
     }
 
     @EventHandler

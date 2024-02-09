@@ -21,7 +21,7 @@ public class LeadPlayerBeacon implements Listener {
             if(e.getAction() != Action.LEFT_CLICK_BLOCK) {
                 if (beacon == Material.BEACON) {
                     if (Whiteforest.plugin.getData().getBoolean(p.getName() + ".isLeader")) {
-                        if (e.getClickedBlock().getLocation() == Whiteforest.plugin.getData().getLocation("teams."+ Whiteforest.plugin.getData().getString(p.getName() + "team") + ".location")) {
+                        if (e.getClickedBlock().getLocation() == Whiteforest.plugin.getData().getLocation("teams."+ Whiteforest.plugin.getData().getString(p.getName() + ".team") + ".location")) {
                             e.setCancelled(true);
                             p.openInventory(new Pailon().pailonGUI());
                         } else {

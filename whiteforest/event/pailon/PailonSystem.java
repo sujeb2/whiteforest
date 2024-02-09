@@ -28,10 +28,6 @@ public class PailonSystem implements Listener {
                 Whiteforest.plugin.getData().set("teams." + Whiteforest.plugin.getData().getString(p.getName() + ".team") +".y", e.getBlockPlaced().getY());
                 Whiteforest.plugin.getData().set("teams." + Whiteforest.plugin.getData().getString(p.getName() + ".team") +".z", e.getBlockPlaced().getZ());
                 Whiteforest.plugin.getData().set("teams." + Whiteforest.plugin.getData().getString(p.getName() + ".team") + ".location", e.getBlockPlaced().getLocation());
-
-                World pWorld = p.getWorld();
-                ArmorStand armStand = pWorld.spawn(e.getBlockPlaced().getLocation(), ArmorStand.class);
-                armStand.setVisible(false);
                 try {
                     Whiteforest.plugin.getData().save(Whiteforest.plugin.playerDataFile);
                 } catch (IOException ex) {

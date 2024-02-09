@@ -7,6 +7,8 @@ import com.songro.whiteforest.event.pailon.PailonSystem;
 import com.songro.whiteforest.event.player.SetJoinMsgNull;
 import com.songro.whiteforest.event.player.isDead;
 import com.songro.whiteforest.repeat.IfPlayerNearBeaconHitullni;
+import com.songro.whiteforest.repeat.IfPlayerNearBeaconPeace;
+import com.songro.whiteforest.repeat.IfPlayerNearBeaconSodabean;
 import com.songro.whiteforest.repeat.IfPlayerNearBeaconSosumi;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -41,7 +43,7 @@ public final class Whiteforest extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new SetJoinMsgNull(), this);
             getServer().getPluginManager().registerEvents(new isDead(), this);
             getServer().getPluginManager().registerEvents(new PailonBreakEvent(), this);
-            //getServer().getPluginManager().registerEvents(new ReliveClickEvent(), this);
+            getServer().getPluginManager().registerEvents(new PailonBreakEvent(), this);
             getServer().getPluginManager().registerEvents(new CreationOfBannedItem(), this);
 
             new BukkitRunnable() {
@@ -55,6 +57,20 @@ public final class Whiteforest extends JavaPlugin {
                 @Override
                 public void run() {
                     new IfPlayerNearBeaconHitullni().checkPlayer();
+                }
+            }.runTaskTimer(this, 0, 20);
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    new IfPlayerNearBeaconPeace().checkPlayer();
+                }
+            }.runTaskTimer(this, 0, 20);
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    new IfPlayerNearBeaconSodabean().checkPlayer();
                 }
             }.runTaskTimer(this, 0, 20);
         } catch (Exception e) {
