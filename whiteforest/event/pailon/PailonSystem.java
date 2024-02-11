@@ -21,22 +21,26 @@ public class PailonSystem implements Listener {
     public void onPlaceBeacon(BlockPlaceEvent e) {
         Player p = e.getPlayer();
 
-        if(Whiteforest.plugin.getData().getBoolean(p.getName() + ".isLeader")) {
-            if(e.getBlockPlaced().getType() == Material.BEACON) {
-                p.sendMessage(ChatColor.GREEN + "파일런이 설치되었습니다!");
-                Whiteforest.plugin.getData().set("teams." + Whiteforest.plugin.getData().getString(p.getName() + ".team") + ".x", e.getBlockPlaced().getX());
-                Whiteforest.plugin.getData().set("teams." + Whiteforest.plugin.getData().getString(p.getName() + ".team") +".y", e.getBlockPlaced().getY());
-                Whiteforest.plugin.getData().set("teams." + Whiteforest.plugin.getData().getString(p.getName() + ".team") +".z", e.getBlockPlaced().getZ());
-                Whiteforest.plugin.getData().set("teams." + Whiteforest.plugin.getData().getString(p.getName() + ".team") + ".location", e.getBlockPlaced().getLocation());
-                try {
-                    Whiteforest.plugin.getData().save(Whiteforest.plugin.playerDataFile);
-                } catch (IOException ex) {
-                    p.sendMessage(ChatColor.RED + "파일런 설치에 실패하였습니다.");
+        if(e.getBlockPlaced().getType() == Material.BEACON) {
+            if(Whiteforest.plugin.getData().getBoolean(p.getName() + ".isLeader")) {
+                if(e.getPlayer().getWorld().getEnvironment() == World.Environment.NORMAL) {
+                    p.sendMessage(ChatColor.GREEN + "파일런이 설치되었습니다!");
+                    Whiteforest.plugin.getData().set("teams." + Whiteforest.plugin.getData().getString(p.getName() + ".team") + ".x", e.getBlockPlaced().getX());
+                    Whiteforest.plugin.getData().set("teams." + Whiteforest.plugin.getData().getString(p.getName() + ".team") + ".y", e.getBlockPlaced().getY());
+                    Whiteforest.plugin.getData().set("teams." + Whiteforest.plugin.getData().getString(p.getName() + ".team") + ".z", e.getBlockPlaced().getZ());
+                    Whiteforest.plugin.getData().set("teams." + Whiteforest.plugin.getData().getString(p.getName() + ".team") + ".location", e.getBlockPlaced().getLocation());
+                    try {
+                        Whiteforest.plugin.getData().save(Whiteforest.plugin.playerDataFile);
+                    } catch (IOException ex) {
+                        p.sendMessage(ChatColor.RED + "파일런 설치에 실패하였습니다.");
+                    }
+                } else {
+                    p.sendActionBar(ChatColor.RED + "파일런은 오버월드에만 설치 가능합니다!");
                 }
+            } else {
+                p.sendActionBar(ChatColor.RED + "리더가 아닙니다!");
+                e.setCancelled(true);
             }
-        } else {
-            e.setCancelled(true);
         }
     }
-
 }

@@ -1,11 +1,11 @@
 package com.songro.whiteforest;
 
+import com.songro.whiteforest.event.gui.ExpStoreEvent;
+import com.songro.whiteforest.event.gui.ReliveClickEvent;
 import com.songro.whiteforest.event.pailon.PailonBreakEvent;
-import com.songro.whiteforest.event.player.CreationOfBannedItem;
-import com.songro.whiteforest.event.player.LeadPlayerBeacon;
+import com.songro.whiteforest.event.pailon.PailonClickEvent;
+import com.songro.whiteforest.event.player.*;
 import com.songro.whiteforest.event.pailon.PailonSystem;
-import com.songro.whiteforest.event.player.SetJoinMsgNull;
-import com.songro.whiteforest.event.player.isDead;
 import com.songro.whiteforest.repeat.IfPlayerNearBeaconHitullni;
 import com.songro.whiteforest.repeat.IfPlayerNearBeaconPeace;
 import com.songro.whiteforest.repeat.IfPlayerNearBeaconSodabean;
@@ -40,11 +40,14 @@ public final class Whiteforest extends JavaPlugin {
         try {
             getServer().getPluginManager().registerEvents(new PailonSystem(), this);
             getServer().getPluginManager().registerEvents(new LeadPlayerBeacon(), this);
-            getServer().getPluginManager().registerEvents(new SetJoinMsgNull(), this);
+            getServer().getPluginManager().registerEvents(new PlayerJoinSystem(), this);
             getServer().getPluginManager().registerEvents(new isDead(), this);
             getServer().getPluginManager().registerEvents(new PailonBreakEvent(), this);
-            getServer().getPluginManager().registerEvents(new PailonBreakEvent(), this);
             getServer().getPluginManager().registerEvents(new CreationOfBannedItem(), this);
+            getServer().getPluginManager().registerEvents(new CheckIfPlayerIsConfig(), this);
+            getServer().getPluginManager().registerEvents(new ReliveClickEvent(), this);
+            getServer().getPluginManager().registerEvents(new PailonClickEvent(), this);
+            getServer().getPluginManager().registerEvents(new ExpStoreEvent(), this);
 
             new BukkitRunnable() {
                 @Override

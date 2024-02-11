@@ -16,7 +16,7 @@ public class isDead implements Listener {
 
     @EventHandler
     public void isPlayerDead(PlayerDeathEvent e) {
-        e.setDeathMessage(ChatColor.RED + "누군가 죽었다.");
+        e.setDeathMessage(null);
 
         Player p = e.getPlayer();
 
@@ -27,10 +27,10 @@ public class isDead implements Listener {
         String str_rejoinTime = sdFormat.format(cal.getTime());
 
         cal.setTime(rejoinTime);
-        cal.add(Calendar.HOUR, 1);
+        cal.add(Calendar.MINUTE, 25);
         rejoinTime = cal.getTime();
 
-        p.banPlayer(ChatColor.GRAY + "자신과 영혼이 분리되었습니다.\n" + ChatColor.RED + "재연결 가능 시간: " + str_rejoinTime, rejoinTime);
+        p.banPlayer(ChatColor.GRAY + "자신과 영혼이 분리되었습니다.\n" + ChatColor.RED + "재연결 가능 시간: " + rejoinTime, rejoinTime);
         Whiteforest.plugin.getDeadPlayerData().set(p.getName() + ".isDead", true);
         try {
             Whiteforest.plugin.getDeadPlayerData().save(Whiteforest.plugin.deadPlayerDataFile);

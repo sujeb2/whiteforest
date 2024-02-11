@@ -21,16 +21,18 @@ public class Pailon {
         ItemStack relive = new ItemStack(Material.TOTEM_OF_UNDYING, 1);
         ItemMeta reliveMeta = relive.getItemMeta();
         reliveMeta.setDisplayName(ChatColor.GREEN + "팀원 소환");
+        relive.setItemMeta(reliveMeta);
 
         return relive;
     }
 
     private ItemStack expShop() {
-        ItemStack relive = new ItemStack(Material.EXPERIENCE_BOTTLE, 1);
-        ItemMeta reliveMeta = relive.getItemMeta();
-        reliveMeta.setDisplayName(ChatColor.YELLOW + "경험치 상점");
+        ItemStack expStore = new ItemStack(Material.EXPERIENCE_BOTTLE, 1);
+        ItemMeta expStoreItemMeta = expStore.getItemMeta();
+        expStoreItemMeta.setDisplayName(ChatColor.YELLOW + "경험치 상점");
+        expStore.setItemMeta(expStoreItemMeta);
 
-        return relive;
+        return expStore;
     }
 
 }
