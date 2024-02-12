@@ -29,18 +29,40 @@ public class ReliveClickEvent implements Listener {
                         Inventory pInv = p.getInventory();
                         if (pInv.containsAtLeast(new ItemStack(Material.EMERALD), 10)) {
                             Whiteforest.plugin.getDeadPlayerData().set(t.getName() + ".isDead", false);
+                            removeItems(pInv, Material.EMERALD, 10);
                             Bukkit.getBanList(BanList.Type.NAME).pardon(Objects.requireNonNull(t.getName()));
                             try {
                                 Whiteforest.plugin.getDeadPlayerData().save(Whiteforest.plugin.deadPlayerDataFile);
                             } catch (IOException ex) {
                                 throw new RuntimeException(ex);
                             }
+                            p.sendMessage(t.getName() + "님이 부활하였습니다!");
                         } else {
                             p.sendMessage(ChatColor.RED + "부활에 필요한 최소한의 에메랄드가 없습니다!");
                         }
                     } else {
                         p.sendMessage(ChatColor.RED + "해당 플레이어는 존재하지 않습니다!");
                     }
+                }
+            }
+        }
+    }
+
+    public static void removeItems(Inventory inventory, Material type, int amount) {
+        if (amount <= 0) return;
+        int size = inventory.getSize();
+        for (int slot = 0; slot < size; slot++) {
+            ItemStack is = inventory.getItem(slot);
+            if (is == null) continue;
+            if (type == is.getType()) {
+                int newAmount = is.getAmount() - amount;
+                if (newAmount > 0) {
+                    is.setAmount(newAmount);
+                    break;
+                } else {
+                    inventory.clear(slot);
+                    amount = -newAmount;
+                    if (amount == 0) break;
                 }
             }
         }

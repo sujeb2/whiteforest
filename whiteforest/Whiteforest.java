@@ -1,20 +1,17 @@
 package com.songro.whiteforest;
 
-import com.songro.whiteforest.event.enforcement.EnforcementSystem;
 import com.songro.whiteforest.event.gui.ExpStoreEvent;
 import com.songro.whiteforest.event.gui.ReliveClickEvent;
 import com.songro.whiteforest.event.pailon.PailonBreakEvent;
 import com.songro.whiteforest.event.pailon.PailonClickEvent;
-import com.songro.whiteforest.event.player.*;
 import com.songro.whiteforest.event.pailon.PailonSystem;
-import com.songro.whiteforest.repeat.IfPlayerNearBeaconHitullni;
-import com.songro.whiteforest.repeat.IfPlayerNearBeaconPeace;
-import com.songro.whiteforest.repeat.IfPlayerNearBeaconSodabean;
-import com.songro.whiteforest.repeat.IfPlayerNearBeaconSosumi;
+import com.songro.whiteforest.event.player.*;
+import com.songro.whiteforest.repeat.*;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -55,6 +52,15 @@ public final class Whiteforest extends JavaPlugin {
                 @Override
                 public void run() {
                     new IfPlayerNearBeaconSosumi().checkPlayer();
+                }
+            }.runTaskTimer(this, 0, 20);
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    for(Player p : Bukkit.getOnlinePlayers()) {
+                        new SpawnEnderDragon().spawnEnderDragon(p);
+                    }
                 }
             }.runTaskTimer(this, 0, 20);
 

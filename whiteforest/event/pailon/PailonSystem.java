@@ -36,6 +36,7 @@ public class PailonSystem implements Listener {
                     }
                 } else {
                     p.sendActionBar(ChatColor.RED + "파일런은 오버월드에만 설치 가능합니다!");
+                    e.setCancelled(true);
                 }
             } else {
                 p.sendActionBar(ChatColor.RED + "리더가 아닙니다!");

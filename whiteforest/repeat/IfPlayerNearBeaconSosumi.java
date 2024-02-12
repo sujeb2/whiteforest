@@ -16,13 +16,14 @@ public class IfPlayerNearBeaconSosumi {
         for(Player p : Bukkit.getOnlinePlayers()) {
             Location team1BeaconLoc = Whiteforest.plugin.getData().getLocation("teams.sosumi.location");
 
-            if (team1BeaconLoc != null && team1BeaconLoc.getNearbyPlayers(10).contains(p)) {
+            if (team1BeaconLoc != null && team1BeaconLoc.getNearbyPlayers(20).contains(p)) {
                 if (!Objects.equals(Whiteforest.plugin.getData().getString(p.getName() + ".team"), "sosumi")) {
                     Bukkit.broadcast(ChatColor.RED + p.getName() + "님이 팀 기지에 침입했습니다!", "teams.sosumi");
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 20 * 3, 1), true);
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 20, 1), true);
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 20, 1), true);
                 } else {
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 20 * 3, 0), true);
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 20 * 3, 0), true);
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 20, 0), true);
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 20, 0), true);
                 }
             } else {
                 return;

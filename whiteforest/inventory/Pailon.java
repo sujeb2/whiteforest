@@ -13,6 +13,7 @@ public class Pailon {
         Inventory inv = Bukkit.createInventory(null, 9, ChatColor.BOLD + "파일런");
         inv.setItem(1, reliveTeam());
         inv.setItem(4, expShop());
+        inv.setItem(7, tpAllTeam());
 
         return inv;
     }
@@ -33,6 +34,15 @@ public class Pailon {
         expStore.setItemMeta(expStoreItemMeta);
 
         return expStore;
+    }
+
+    private ItemStack tpAllTeam() {
+        ItemStack tpAllteam1 = new ItemStack(Material.COMPASS, 1);
+        ItemMeta tpAllMeta = tpAllteam1.getItemMeta();
+        tpAllMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "팀원 불러오기");
+        tpAllteam1.setItemMeta(tpAllMeta);
+
+        return tpAllteam1;
     }
 
 }
