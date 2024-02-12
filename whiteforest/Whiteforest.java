@@ -1,5 +1,6 @@
 package com.songro.whiteforest;
 
+import com.songro.whiteforest.event.enforcement.EnforcementSystem;
 import com.songro.whiteforest.event.gui.ExpStoreEvent;
 import com.songro.whiteforest.event.gui.ReliveClickEvent;
 import com.songro.whiteforest.event.pailon.PailonBreakEvent;
@@ -48,6 +49,7 @@ public final class Whiteforest extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new ReliveClickEvent(), this);
             getServer().getPluginManager().registerEvents(new PailonClickEvent(), this);
             getServer().getPluginManager().registerEvents(new ExpStoreEvent(), this);
+            getServer().getPluginManager().registerEvents(new TeamChat(), this);
 
             new BukkitRunnable() {
                 @Override

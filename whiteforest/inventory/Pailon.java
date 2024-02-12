@@ -29,7 +29,7 @@ public class Pailon {
     private ItemStack expShop() {
         ItemStack expStore = new ItemStack(Material.EXPERIENCE_BOTTLE, 1);
         ItemMeta expStoreItemMeta = expStore.getItemMeta();
-        expStoreItemMeta.setDisplayName(ChatColor.YELLOW + "경험치 상점");
+        expStoreItemMeta.setDisplayName(ChatColor.YELLOW + "레벨 상점");
         expStore.setItemMeta(expStoreItemMeta);
 
         return expStore;

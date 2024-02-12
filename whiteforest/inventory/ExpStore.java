@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class ExpStore {
 
     public Inventory expStoreGUI() {
-        Inventory inv = Bukkit.createInventory(null, 9, ChatColor.BOLD + "경험치 상점");
+        Inventory inv = Bukkit.createInventory(null, 9, ChatColor.BOLD + "레벨 상점");
         inv.setItem(1, expShopItem1());
         inv.setItem(3, expShopItem2());
         inv.setItem(5, expShopItem3());
@@ -27,7 +27,7 @@ public class ExpStore {
         ItemMeta item1ItemMeta = item1.getItemMeta();
         item1ItemMeta.setDisplayName(ChatColor.YELLOW + "경험치 병");
         ArrayList<String> item1Lore = new ArrayList<>();
-        item1Lore.add(ChatColor.GRAY + "[ 구매 시 : 경험치 10 감소 ]");
+        item1Lore.add(ChatColor.GRAY + "[ 구매 시 : 레벨 2 감소 ]");
         item1ItemMeta.setLore(item1Lore);
         item1.setItemMeta(item1ItemMeta);
 
@@ -39,7 +39,7 @@ public class ExpStore {
         ItemMeta item2ItemMeta = item2.getItemMeta();
         item2ItemMeta.setDisplayName(ChatColor.GOLD + "불사의 토템");
         ArrayList<String> item2Lore = new ArrayList<>();
-        item2Lore.add(ChatColor.GRAY + "[ 구매 시 : 경험치 100 감소 ]");
+        item2Lore.add(ChatColor.GRAY + "[ 구매 시 : 레벨 40 감소 ]");
         item2ItemMeta.setLore(item2Lore);
         item2.setItemMeta(item2ItemMeta);
 
@@ -51,7 +51,7 @@ public class ExpStore {
         ItemMeta item4ItemMeta = item4.getItemMeta();
         item4ItemMeta.setDisplayName(ChatColor.AQUA + "파일런");
         ArrayList<String> item4Lore = new ArrayList<>();
-        item4Lore.add(ChatColor.GRAY + "[ 구매 시 : 경험치 3000 감소 ]");
+        item4Lore.add(ChatColor.GRAY + "[ 구매 시 : 레벨 300 감소 ]");
         item4ItemMeta.setLore(item4Lore);
         item4.setItemMeta(item4ItemMeta);
 
@@ -59,11 +59,11 @@ public class ExpStore {
     }
 
     private ItemStack expShopItem4() {
-        ItemStack item3 = new ItemStack(Material.BARRIER, 1);
+        ItemStack item3 = new ItemStack(Material.NETHER_STAR, 1);
         ItemMeta item3ItemMeta = item3.getItemMeta();
-        item3ItemMeta.setDisplayName(ChatColor.RED + "추가 예정");
+        item3ItemMeta.setDisplayName(ChatColor.BLUE + "강화석");
         ArrayList<String> item3Lore = new ArrayList<>();
-        item3Lore.add(ChatColor.ITALIC + "[ 추가 예정 ]");
+        item3Lore.add(ChatColor.GRAY + "[ 구매 시 : 레벨 5 감소 ]");
         item3ItemMeta.setLore(item3Lore);
         item3.setItemMeta(item3ItemMeta);
 

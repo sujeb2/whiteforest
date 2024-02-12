@@ -25,6 +25,7 @@ public class ReliveClickEvent implements Listener {
                     OfflinePlayer t = Bukkit.getOfflinePlayer(e.getCurrentItem().getItemMeta().getDisplayName());
 
                     if (t != null) {
+                        e.setCancelled(true);
                         Inventory pInv = p.getInventory();
                         if (pInv.containsAtLeast(new ItemStack(Material.EMERALD), 10)) {
                             Whiteforest.plugin.getDeadPlayerData().set(t.getName() + ".isDead", false);
