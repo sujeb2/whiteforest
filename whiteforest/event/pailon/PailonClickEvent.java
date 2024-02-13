@@ -4,15 +4,16 @@ import com.songro.whiteforest.Whiteforest;
 import com.songro.whiteforest.inventory.ExpStore;
 import com.songro.whiteforest.inventory.Relive;
 import com.songro.whiteforest.util.Team;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 
-import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 
 public class PailonClickEvent implements Listener {
@@ -22,23 +23,22 @@ public class PailonClickEvent implements Listener {
         Player p = (Player) e.getView().getPlayer();
 
         if (e.getView().getTitle().equalsIgnoreCase(ChatColor.BOLD + "파일런")) {
-            if (Objects.requireNonNull(e.getClickedInventory()).getType() != InventoryType.PLAYER) {
                 try {
-                    if (e.getCurrentItem() != null && !e.getCurrentItem().equals(Material.AIR)) {
+                    if (e.getCurrentItem() != null && !e.getCurrentItem().getType().equals(Material.AIR)) {
                         if (e.getCurrentItem().getType() == Material.EXPERIENCE_BOTTLE && e.getCurrentItem().getItemMeta().hasDisplayName()) {
                             e.setCancelled(true);
-                            if(Whiteforest.plugin.getData().getBoolean(p.getName() + ".isLeader")) {
-                                p.closeInventory();
-                                p.openInventory(new ExpStore().expStoreGUI());
-                            } else {
-                                p.sendMessage(ChatColor.RED + "리더가 아닙니다!");
-                            }
+                            p.closeInventory();
+                            p.openInventory(new ExpStore().expStoreGUI());
                         }
 
                         if (e.getCurrentItem().getType() == Material.TOTEM_OF_UNDYING && e.getCurrentItem().getItemMeta().hasDisplayName()) {
                             e.setCancelled(true);
-                            p.closeInventory();
-                            p.openInventory(new Relive().reliveGUI(p));
+                            if(Whiteforest.plugin.getData().getBoolean(p.getName() + ".isLeader")) {
+                                p.closeInventory();
+                                p.openInventory(new Relive().reliveGUI(p));
+                            } else {
+                                p.sendMessage(ChatColor.RED + "리더가 아닙니다!");
+                            }
                         }
 
                         if (e.getCurrentItem().getType() == Material.COMPASS && e.getCurrentItem().getItemMeta().hasDisplayName()) {
@@ -57,10 +57,9 @@ public class PailonClickEvent implements Listener {
                             }
                         }
                     }
-                } catch (NullPointerException npe) {
-                    return;
+                } catch (Exception npe) {
+                    Whiteforest.plugin.getLogger().info("none");
                 }
-            }
         }
     }
 

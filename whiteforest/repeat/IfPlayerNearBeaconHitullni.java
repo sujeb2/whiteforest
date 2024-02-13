@@ -19,11 +19,11 @@ public class IfPlayerNearBeaconHitullni {
             if (team1BeaconLoc != null && team1BeaconLoc.getNearbyPlayers(20).contains(p)) {
                 if (!Objects.equals(Whiteforest.plugin.getData().getString(p.getName() + ".team"), "hitullni")) {
                     Bukkit.broadcast(ChatColor.RED + p.getName() + "님이 팀 기지에 침입했습니다!", "teams.hitullni");
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 20, 1), true);
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 20, 1), true);
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 20 * 3, 1), true);
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 20 * 3, 0), true);
                 } else {
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 20, 0), true);
-                    p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 20, 0), true);
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 20 * 3, 0), true);
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 20 * 3, 0), true);
                 }
             } else {
                 return;

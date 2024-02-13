@@ -1,5 +1,8 @@
 package com.songro.whiteforest;
 
+import com.songro.whiteforest.event.enchant.EnchantmentSystem;
+import com.songro.whiteforest.event.gui.EnchantCloseEvent;
+import com.songro.whiteforest.event.gui.EnchantGUIEvent;
 import com.songro.whiteforest.event.gui.ExpStoreEvent;
 import com.songro.whiteforest.event.gui.ReliveClickEvent;
 import com.songro.whiteforest.event.pailon.PailonBreakEvent;
@@ -47,6 +50,9 @@ public final class Whiteforest extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new PailonClickEvent(), this);
             getServer().getPluginManager().registerEvents(new ExpStoreEvent(), this);
             getServer().getPluginManager().registerEvents(new TeamChat(), this);
+            getServer().getPluginManager().registerEvents(new EnchantmentSystem(), this);
+            getServer().getPluginManager().registerEvents(new EnchantGUIEvent(), this);
+            getServer().getPluginManager().registerEvents(new EnchantCloseEvent(), this);
 
             new BukkitRunnable() {
                 @Override

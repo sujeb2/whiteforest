@@ -20,8 +20,7 @@ public class ReliveClickEvent implements Listener {
         Player p = (Player) e.getView().getPlayer();
 
         if(e.getView().getTitle().equalsIgnoreCase(ChatColor.BOLD + "팀원 부활")) {
-            if (Objects.requireNonNull(e.getClickedInventory()).getType() != InventoryType.PLAYER) {
-                if (e.getCurrentItem() != null && !e.getCurrentItem().equals(Material.AIR)) {
+                if (e.getCurrentItem() != null && !e.getCurrentItem().getType().equals(Material.AIR)) {
                     OfflinePlayer t = Bukkit.getOfflinePlayer(e.getCurrentItem().getItemMeta().getDisplayName());
 
                     if (t != null) {
@@ -37,6 +36,7 @@ public class ReliveClickEvent implements Listener {
                                 throw new RuntimeException(ex);
                             }
                             p.sendMessage(t.getName() + "님이 부활하였습니다!");
+                            p.closeInventory();
                         } else {
                             p.sendMessage(ChatColor.RED + "부활에 필요한 최소한의 에메랄드가 없습니다!");
                         }
@@ -44,7 +44,6 @@ public class ReliveClickEvent implements Listener {
                         p.sendMessage(ChatColor.RED + "해당 플레이어는 존재하지 않습니다!");
                     }
                 }
-            }
         }
     }
 
