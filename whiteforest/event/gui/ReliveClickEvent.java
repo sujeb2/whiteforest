@@ -1,6 +1,7 @@
 package com.songro.whiteforest.event.gui;
 
 import com.songro.whiteforest.Whiteforest;
+import com.songro.whiteforest.util.Team;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,6 +29,7 @@ public class ReliveClickEvent implements Listener {
                         Inventory pInv = p.getInventory();
                         if (pInv.containsAtLeast(new ItemStack(Material.EMERALD), 10)) {
                             Whiteforest.plugin.getDeadPlayerData().set(t.getName() + ".isDead", false);
+                            Whiteforest.plugin.getData().set("teams." + Team.getTeamFromPlayer(p) + ".teamdeath", Whiteforest.plugin.getData().getInt("teams." + Team.getTeamFromPlayer(p) + ".teamdeath") - 1);
                             removeItems(pInv, Material.EMERALD, 10);
                             Bukkit.getBanList(BanList.Type.NAME).pardon(Objects.requireNonNull(t.getName()));
                             try {

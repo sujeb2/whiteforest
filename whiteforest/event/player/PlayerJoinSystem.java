@@ -26,37 +26,29 @@ public class PlayerJoinSystem implements Listener {
             case "hitullni":
                 p.addAttachment(Whiteforest.plugin, "teams.hitullni", true);
                 p.setDisplayName(ChatColor.LIGHT_PURPLE + p.getName());
-                if(Whiteforest.plugin.getData().getLocation("teams.hitullni.location") != null && Whiteforest.plugin.getDeadPlayerData().getBoolean(p.getName() + ".isDead")) {
+                if(Whiteforest.plugin.getData().getLocation("teams.hitullni.location") != null && Whiteforest.plugin.getData().getBoolean(p.getName() + ".ableToSpawnPailon")) {
                     p.teleport(Objects.requireNonNull(Whiteforest.plugin.getData().getLocation("teams.hitullni.location")));
-                } else {
-                    p.sendActionBar(ChatColor.RED + "파일런 위치가 존재하지 않거나, 막혀있습니다!");
                 }
                 break;
             case "sosumi":
                 p.addAttachment(Whiteforest.plugin, "teams.sosumi", true);
                 p.setDisplayName(ChatColor.GOLD + p.getName());
-                if(Whiteforest.plugin.getData().getLocation("teams.sosumi.location") != null && Whiteforest.plugin.getDeadPlayerData().getBoolean(p.getName() + ".isDead")) {
+                if(Whiteforest.plugin.getData().getLocation("teams.sosumi.location") != null && Whiteforest.plugin.getData().getBoolean(p.getName() + ".ableToSpawnPailon")) {
                     p.teleport(Objects.requireNonNull(Whiteforest.plugin.getData().getLocation("teams.sosumi.location")));
-                } else {
-                    p.sendActionBar(ChatColor.RED + "파일런 위치가 존재하지 않거나, 막혀있습니다!");
                 }
                 break;
             case "sodabean":
                 p.addAttachment(Whiteforest.plugin, "teams.sodabean", true);
                 p.setDisplayName(ChatColor.GREEN + p.getName());
-                if(Whiteforest.plugin.getData().getLocation("teams.sodabean.location") != null && Whiteforest.plugin.getDeadPlayerData().getBoolean(p.getName() + ".isDead")) {
+                if(Whiteforest.plugin.getData().getLocation("teams.sodabean.location") != null && Whiteforest.plugin.getData().getBoolean(p.getName() + ".ableToSpawnPailon")) {
                     p.teleport(Objects.requireNonNull(Whiteforest.plugin.getData().getLocation("teams.sodabean.location")));
-                } else {
-                    p.sendActionBar(ChatColor.RED + "파일런 위치가 존재하지 않거나, 막혀있습니다!");
                 }
                 break;
             case "peace":
                 p.addAttachment(Whiteforest.plugin, "teams.peace", true);
                 p.setDisplayName(ChatColor.YELLOW + p.getName());
-                if(Whiteforest.plugin.getData().getLocation("teams.peace.location") != null && Whiteforest.plugin.getDeadPlayerData().getBoolean(p.getName() + ".isDead")) {
+                if(Whiteforest.plugin.getData().getLocation("teams.peace.location") != null && Whiteforest.plugin.getData().getBoolean(p.getName() + ".ableToSpawnPailon")) {
                     p.teleport(Objects.requireNonNull(Whiteforest.plugin.getData().getLocation("teams.peace.location")));
-                } else {
-                    p.sendActionBar(ChatColor.RED + "파일런 위치가 존재하지 않거나, 막혀있습니다!");
                 }
                 break;
         }

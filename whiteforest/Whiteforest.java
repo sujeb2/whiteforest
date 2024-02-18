@@ -1,20 +1,20 @@
 package com.songro.whiteforest;
 
 import com.songro.whiteforest.event.enchant.EnchantmentSystem;
-import com.songro.whiteforest.event.gui.EnchantCloseEvent;
-import com.songro.whiteforest.event.gui.EnchantGUIEvent;
-import com.songro.whiteforest.event.gui.ExpStoreEvent;
-import com.songro.whiteforest.event.gui.ReliveClickEvent;
+import com.songro.whiteforest.event.enforce.EnforcementSystem;
+import com.songro.whiteforest.event.gui.*;
 import com.songro.whiteforest.event.pailon.PailonBreakEvent;
 import com.songro.whiteforest.event.pailon.PailonClickEvent;
 import com.songro.whiteforest.event.pailon.PailonSystem;
 import com.songro.whiteforest.event.player.*;
 import com.songro.whiteforest.repeat.*;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -53,6 +53,10 @@ public final class Whiteforest extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new EnchantmentSystem(), this);
             getServer().getPluginManager().registerEvents(new EnchantGUIEvent(), this);
             getServer().getPluginManager().registerEvents(new EnchantCloseEvent(), this);
+            getServer().getPluginManager().registerEvents(new ChangeOre2Normal(), this);
+            getServer().getPluginManager().registerEvents(new EnforcementGUIEvent(), this);
+            getServer().getPluginManager().registerEvents(new EnforcementSystem(), this);
+            getServer().getPluginManager().registerEvents(new TryJoinEnd(), this);
 
             new BukkitRunnable() {
                 @Override
@@ -64,9 +68,14 @@ public final class Whiteforest extends JavaPlugin {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    for(Player p : Bukkit.getOnlinePlayers()) {
-                        new SpawnEnderDragon().spawnEnderDragon(p);
-                    }
+                    new SetEndJoinTime().onTryJoinEnd();
+                }
+            }.runTaskTimer(this, 0, 20);
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    new SpawnEnderDragon().spawnEnderDragon();
                 }
             }.runTaskTimer(this, 0, 20);
 
@@ -90,6 +99,86 @@ public final class Whiteforest extends JavaPlugin {
                     new IfPlayerNearBeaconSodabean().checkPlayer();
                 }
             }.runTaskTimer(this, 0, 20);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    Location pailonLoc = Whiteforest.plugin.getData().getLocation("teams.hitullni.location");
+
+                    if(pailonLoc == null && Whiteforest.plugin.getDeadPlayerData().getBoolean("Jun09743.isDead")) {
+                        Bukkit.broadcast(Component.text(ChatColor.RED + "히틀니 팀이 붕괴했습니다!"));
+                        Whiteforest.plugin.getData().set("Jun09743.isLeader", false);
+                        try {
+                            Whiteforest.plugin.getData().save(Whiteforest.plugin.playerDataFile);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        if(!isCancelled()) {
+                            cancel();
+                        }
+                    }
+                }
+            }.runTaskTimer(this, 0, 20);
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    Location pailonLoc = Whiteforest.plugin.getData().getLocation("teams.sosumi.location");
+
+                    if(pailonLoc == null && Whiteforest.plugin.getDeadPlayerData().getBoolean("song_tam.isDead")) {
+                        Bukkit.broadcast(Component.text(ChatColor.RED + "고소미 팀이 붕괴했습니다!"));
+                        Whiteforest.plugin.getData().set("song_tam.isLeader", false);
+                        try {
+                            Whiteforest.plugin.getData().save(Whiteforest.plugin.playerDataFile);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        if(!isCancelled()) {
+                            cancel();
+                        }
+                    }
+                }
+            }.runTaskTimer(this, 0, 20);
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    Location pailonLoc = Whiteforest.plugin.getData().getLocation("teams.peace.location");
+
+                    if(pailonLoc == null && Whiteforest.plugin.getDeadPlayerData().getBoolean("_Devil_Stars_.isDead")) {
+                        Bukkit.broadcast(Component.text(ChatColor.RED + "평화 팀이 붕괴했습니다!"));
+                        Whiteforest.plugin.getData().set("_Devil_Stars_.isLeader", false);
+                        try {
+                            Whiteforest.plugin.getData().save(Whiteforest.plugin.playerDataFile);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        if(!isCancelled()) {
+                            cancel();
+                        }
+                    }
+                }
+            }.runTaskTimer(this, 0, 20);
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    Location pailonLoc = Whiteforest.plugin.getData().getLocation("teams.sodabean.location");
+
+                    if(pailonLoc == null && Whiteforest.plugin.getDeadPlayerData().getBoolean("notSongro_.isDead")) {
+                        Bukkit.broadcast(Component.text(ChatColor.RED + "소다맛완두콩 팀이 붕괴했습니다!"));
+                        Whiteforest.plugin.getData().set("notSongro_.isLeader", false);
+                        try {
+                            Whiteforest.plugin.getData().save(Whiteforest.plugin.playerDataFile);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        if(!isCancelled()) {
+                            cancel();
+                        }
+                    }
+                }
+            }.runTaskTimer(this, 0, 20);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,6 +186,7 @@ public final class Whiteforest extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        log.info("[WHITEFOREST] Saving");
         log.info("[WHITEFOREST] End");
     }
 

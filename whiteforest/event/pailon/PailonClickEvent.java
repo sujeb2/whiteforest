@@ -2,6 +2,7 @@ package com.songro.whiteforest.event.pailon;
 
 import com.songro.whiteforest.Whiteforest;
 import com.songro.whiteforest.inventory.ExpStore;
+import com.songro.whiteforest.inventory.Merge;
 import com.songro.whiteforest.inventory.Relive;
 import com.songro.whiteforest.util.Team;
 import org.bukkit.Bukkit;
@@ -13,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Objects;
 
@@ -33,12 +35,8 @@ public class PailonClickEvent implements Listener {
 
                         if (e.getCurrentItem().getType() == Material.TOTEM_OF_UNDYING && e.getCurrentItem().getItemMeta().hasDisplayName()) {
                             e.setCancelled(true);
-                            if(Whiteforest.plugin.getData().getBoolean(p.getName() + ".isLeader")) {
-                                p.closeInventory();
-                                p.openInventory(new Relive().reliveGUI(p));
-                            } else {
-                                p.sendMessage(ChatColor.RED + "리더가 아닙니다!");
-                            }
+                            p.closeInventory();
+                            p.openInventory(new Relive().reliveGUI(p));
                         }
 
                         if (e.getCurrentItem().getType() == Material.COMPASS && e.getCurrentItem().getItemMeta().hasDisplayName()) {
@@ -52,6 +50,34 @@ public class PailonClickEvent implements Listener {
                                         p1.teleport(warpLoc);
                                     }
                                 }
+                            } else {
+                                p.sendMessage(ChatColor.RED + "리더가 아닙니다!");
+                            }
+                        }
+
+                        if(e.getCurrentItem().getType() == Material.PURPLE_GLAZED_TERRACOTTA  && e.getCurrentItem().getItemMeta().hasDisplayName()) {
+                            e.setCancelled(true);
+                            ItemMeta cancelItem = e.getCurrentItem().getItemMeta();
+                           if(!Whiteforest.plugin.getData().getBoolean(p.getName() + ".ableToSpawnPailon")) {
+                               Whiteforest.plugin.getData().set(p.getName() + ".ableToSpawnPailon", true);
+                               p.sendMessage(ChatColor.GREEN + "파일런 스폰을 허용했습니다.");
+                               cancelItem.setDisplayName(ChatColor.GREEN + "[ 파일런에서 스폰 : 켜짐 ]");
+                           } else {
+                               Whiteforest.plugin.getData().set(p.getName() + ".ableToSpawnPailon", false);
+                               p.sendMessage(ChatColor.RED + "파일런 스폰을 거부했습니다.");
+                               cancelItem.setDisplayName(ChatColor.RED + "[ 파일런에서 스폰 : 꺼짐 ]");
+                           }
+
+                           Whiteforest.plugin.getData().save(Whiteforest.plugin.playerDataFile);
+
+                            e.getCurrentItem().setItemMeta(cancelItem);
+                        }
+
+                        if(e.getCurrentItem().getType() == Material.EMERALD && e.getCurrentItem().getItemMeta().hasDisplayName()) {
+                            e.setCancelled(true);
+                            if(Whiteforest.plugin.getData().getBoolean(p.getName() + ".isLeader")) {
+                                p.closeInventory();
+                                p.openInventory(new Merge().mergeGUI());
                             } else {
                                 p.sendMessage(ChatColor.RED + "리더가 아닙니다!");
                             }

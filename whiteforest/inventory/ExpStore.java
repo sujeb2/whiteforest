@@ -61,9 +61,9 @@ public class ExpStore {
     private ItemStack expShopItem4() {
         ItemStack item3 = new ItemStack(Material.NETHER_STAR, 1);
         ItemMeta item3ItemMeta = item3.getItemMeta();
-        item3ItemMeta.setDisplayName(ChatColor.BLUE + "강화석");
+        item3ItemMeta.setDisplayName(ChatColor.BLUE + "강화석" + ChatColor.YELLOW + " (x5)");
         ArrayList<String> item3Lore = new ArrayList<>();
-        item3Lore.add(ChatColor.GRAY + "[ 구매 시 : 레벨 5 감소 ]");
+        item3Lore.add(ChatColor.GRAY + "[ 구매 시 : 레벨 7 감소 ]");
         item3ItemMeta.setLore(item3Lore);
         item3.setItemMeta(item3ItemMeta);
 

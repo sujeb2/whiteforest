@@ -1,64 +1,142 @@
 Star_Sara:
-    isLeader: true
-    beaconLeft: 0
-    team: "sosumi"
-    gotPailon: false
+  isLeader: true
+  beaconLeft: 0
+  team: sosumi
+  gotPailon: false
+  isNew: false
+  ableToSpawnPailon: true
 
 _Winter__:
-    isLeader: false
-    team: "sosumi"
-    skindata: "Star_Sara"
+  isLeader: false
+  team: sosumi
+  skindata: Star_Sara
+  ableToSpawnPailon: true
+  isNew: false
 
 tyi_kia:
-    isLeader: false
-    team: "peace"
-    skindata: "Star_Sara"
+  isLeader: false
+  team: peace
+  skindata: Star_Sara
+  ableToSpawnPailon: true
 
 two6ean:
-    isLeader: true
-    beaconLeft: 0
-    team: "sodabean"
-    skindata: "two6ean"
-    gotPailon: false
+  developer: true
 
 Horing1807:
   isLeader: false
-  team: "peace"
+  team: peace
+  ableToSpawnPailon: true
+  isNew: false
 
 tmon1031:
   isLeader: false
-  team: "peace"
+  team: peace
+  ableToSpawnPailon: true
+  isNew: false
 
 _Devil_Stars_:
-    isLeader: true
-    beaconLeft: 0
-    team: "peace"
-    skindata: "_Devil_Stars_"
-    gotPailon: false
+  isLeader: true
+  beaconLeft: 0
+  team: peace
+  skindata: _Devil_Stars_
+  gotPailon: false
+  isNew: false
+  ableToSpawnPailon: true
 
 notSongro_:
   isLeader: true
-  beaconLeft: 0
-  team: "hitullni"
-  skindata: "notSongro_"
+  team: hitullni
+  skindata: notSongro_
   gotPailon: false
+  isNew: false
+  ableToSpawnPailon: true
 
 do_gi:
   isLeader: false
-  team: "sodabean"
+  team: sodabean
+  skindata:
+  isNew: false
+  ableToSpawnPailon: true
 
 hanyul0967:
   isLeader: false
-  team: "sodabean"
+  team: sodabean
+  isNew: false
+  skindata:
+  ableToSpawnPailon: true
 
 s5779:
   isLeader: false
-  team: "sodabean"
+  isNew: false
+  team: sodabean
+  skindata:
+  ableToSpawnPailon: true
 
-Dakeberry:
+Rose__2:
   isLeader: false
-  team: "sosumi"
+  team: sosumi
+  isNew: false
+  skindata:
+  ableToSpawnPailon: true
 
+kimstrolbabo:
+  isLeader: false
+  team: hitullni
+  isNew: false
+  skindata:
+  ableToSpawnPailon: true
+
+an_si:
+  isLeader: false
+  team: sodabean
+  isNew: false
+  ableToSpawnPailon: true
+
+112m:
+  isLeader: false
+  team: peace
+  isNew: false
+  skindata:
+  ableToSpawnPailon: true
+
+haile_08:
+  isLeader: false
+  team: hitullni
+  isNew: false
+  skindata:
+  ableToSpawnPailon: true
+
+Jun09743:
+  isLeader: true
+  team: hitullni
+  gotPailon: false
+  skindata: Jun09743
+  isNew: false
+  ableToSpawnPailon: true
+
+song_tam:
+  isLeader: true
+  team: sodabean
+  isNew: false
+  gotPailon: false
+  skindata: song_tam
+  ableToSpawnPailon: true
+
+bihee:
+  isLeader: false
+  team: hitullni
+  isNew: false
+  skindata:
+  ableToSpawnPailon: true
+
+Bixp1e:
+  isLeader: false
+  team: peace
+  isNew: false
+  skindata:
+  ableToSpawnPailon: true
+
+ableToJoinEnd: false
 
 teams:
   sosumi:

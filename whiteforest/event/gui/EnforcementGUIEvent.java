@@ -9,53 +9,34 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
-public class EnchantGUIEvent implements Listener {
+public class EnforcementGUIEvent implements Listener {
 
     @EventHandler
     public void onEnchantItem(InventoryClickEvent e) {
         Player p = (Player) e.getView().getPlayer();
 
-        if(e.getView().getTitle().equalsIgnoreCase(ChatColor.BOLD + "마법부여")) {
+        if(e.getView().getTitle().equalsIgnoreCase(ChatColor.BOLD + "강화")) {
                 try {
                     if (e.getCurrentItem() != null && !e.getCurrentItem().getType().equals(Material.AIR)) {
                         Material clickedItem = e.getCurrentItem().getType();
 
-                        if (clickedItem == Material.ENCHANTED_BOOK && e.getCurrentItem().getItemMeta().hasDisplayName()) {
-                            if (p.getInventory().contains(Material.LAPIS_LAZULI)) {
+                        if (clickedItem == Material.BOOK && e.getCurrentItem().getItemMeta().hasDisplayName()) {
+                            if (p.getInventory().contains(Material.NETHER_STAR)) {
                                 e.setCancelled(true);
                                 if (p.getOpenInventory().getInventory(11) != null) {
                                     ItemStack item12 = e.getClickedInventory().getItem(11);
 
                                     if (item12 != null) {
-                                        List<Enchantment> possible = new ArrayList<>();
+                                        if(!item12.getItemMeta().hasLore()) {
 
-                                        for (Enchantment ench : Enchantment.values()) {
-                                            if (ench.canEnchantItem(item12)) {
-                                                possible.add(ench);
-                                            }
-                                        }
-
-                                        if (!possible.isEmpty()) {
-                                            Collections.shuffle(possible);
-                                            Enchantment chosen = possible.get(0);
-                                            if(item12.getEnchantments().size() <= 3) {
-                                                if(chosen != Enchantment.MENDING) {
-                                                    item12.addEnchantment(chosen, 1 + (int) (Math.random() * ((chosen.getMaxLevel() - 2) + 1)));
-                                                    removeItem(p.getInventory(), Material.LAPIS_LAZULI, 2);
-                                                } else {
-                                                    return;
-                                                }
-                                            } else {
-                                                p.sendMessage(ChatColor.YELLOW + "더 이상 인첸트가 불가능합니다.");
-                                            }
-                                        } else {
-                                            p.sendMessage(ChatColor.YELLOW + "인첸트가 불가능한 아이템입니다.");
                                         }
 
                                         p.playSound(p, Sound.BLOCK_CHAIN_PLACE, 8, 10);
@@ -71,21 +52,11 @@ public class EnchantGUIEvent implements Listener {
                                 }
                             } else {
                                 e.setCancelled(true);
-                                p.sendMessage(ChatColor.YELLOW + "마법부여에 필요한 아이템이 없습니다.");
+                                p.sendMessage(ChatColor.YELLOW + "강화에 필요한 아이템이 없습니다.");
                                 p.playSound(p, Sound.BLOCK_ANVIL_PLACE, 8, 10);
                             }
                         } else if(clickedItem == Material.GRAY_STAINED_GLASS_PANE) {
                             e.setCancelled(true);
-                        } else if(clickedItem == Material.BARRIER) {
-                            if(p.getOpenInventory().getInventory(11) != null) {
-                                e.setCancelled(true);
-                                ItemStack item12 = e.getClickedInventory().getItem(11);
-                                removeEnchantments(item12);
-                            } else {
-                                e.setCancelled(true);
-                                p.sendMessage(ChatColor.YELLOW + "아이템이 없습니다.");
-                                p.playSound(p, Sound.BLOCK_ANVIL_PLACE, 8, 10);
-                            }
                         }
                     }
                 } catch (Exception npe) {

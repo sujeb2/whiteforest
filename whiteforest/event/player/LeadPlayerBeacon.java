@@ -23,7 +23,7 @@ public class LeadPlayerBeacon implements Listener {
                     if (Whiteforest.plugin.getData().getBoolean(p.getName() + ".isLeader") || !Whiteforest.plugin.getData().getBoolean(p.getName() + ".isLeader")) {
                         if (e.getClickedBlock().getX() == Whiteforest.plugin.getData().getInt("teams." + Whiteforest.plugin.getData().getString(p.getName() + ".team") + ".x") && e.getClickedBlock().getY() == Whiteforest.plugin.getData().getInt("teams." + Whiteforest.plugin.getData().getString(p.getName() + ".team") + ".y") && e.getClickedBlock().getZ() == Whiteforest.plugin.getData().getInt("teams." + Whiteforest.plugin.getData().getString(p.getName() + ".team") + ".z")) {
                             e.setCancelled(true);
-                            p.openInventory(new Pailon().pailonGUI());
+                            p.openInventory(new Pailon().pailonGUI(p));
                         } else {
                             p.sendActionBar(ChatColor.RED + "자신의 파일런이 아닙니다!");
                             p.closeInventory();

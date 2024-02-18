@@ -49,14 +49,16 @@ public class ExpStoreEvent implements Listener {
 
                     if(e.getCurrentItem().getType() == Material.NETHER_STAR && e.getCurrentItem().getItemMeta().hasDisplayName()) {
                         e.setCancelled(true);
-                        if(p.getLevel() >= 5) {
-                            p.setLevel(p.getLevel() - 5);
+                        if(p.getLevel() >= 7) {
+                            p.setLevel(p.getLevel() - 7);
                             ItemStack item = new ItemStack(Material.NETHER_STAR);
                             ItemMeta itemMeta = item.getItemMeta();
                             itemMeta.setDisplayName(ChatColor.GOLD + "[강화석]");
                             item.setItemMeta(itemMeta);
 
-                            p.getInventory().addItem(item);
+                            for(int i = 0; i<=5; i++) {
+                                p.getInventory().addItem(item);
+                            }
                         } else {
                             p.sendMessage(ChatColor.YELLOW + "충분한 레벨이 아닙니다!");
                         }

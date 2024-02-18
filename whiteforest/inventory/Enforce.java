@@ -10,10 +10,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 
-public class Enchant {
+public class Enforce {
 
-    public Inventory enchantGUI(Player p) {
-        Inventory inv = Bukkit.createInventory(null, 27, ChatColor.BOLD + "마법부여");
+    public Inventory enforceGUI(Player p) {
+        Inventory inv = Bukkit.createInventory(null, 27, ChatColor.BOLD + "강화");
         for(int i=0; i<=10; i++) {
             inv.setItem(i, nullItem());
         }
@@ -23,13 +23,7 @@ public class Enchant {
         inv.setItem(14, nullItem());
         inv.setItem(15, enchantItem());
 
-        for(int i3=16; i3<=19; i3++) {
-            inv.setItem(i3, nullItem());
-        }
-
-        inv.setItem(20, removeEnchant());
-
-        for(int i2=21; i2<=26; i2++) {
+        for(int i2=16; i2<=26; i2++) {
             inv.setItem(i2, nullItem());
         }
 
@@ -46,24 +40,19 @@ public class Enchant {
     }
 
     private ItemStack enchantItem() {
-        ItemStack enchant = new ItemStack(Material.ENCHANTED_BOOK);
+        ItemStack enchant = new ItemStack(Material.BOOK);
         ItemMeta enchantMeta = enchant.getItemMeta();
-        enchantMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "[ 인첸트 ]");
+        enchantMeta.setDisplayName(ChatColor.GOLD + "[ 강화 ]");
         ArrayList<String> item2Lore = new ArrayList<>();
-        item2Lore.add(ChatColor.GRAY + "[ 인첸트 시 : 청금석 2개 감소 ]");
+        item2Lore.add(ChatColor.GREEN + "성공 확률: ");
+        item2Lore.add(ChatColor.RED + "실패 확률: ");
+        item2Lore.add(ChatColor.DARK_RED + "파괴 확률: ");
+        item2Lore.add("");
+        item2Lore.add(ChatColor.GOLD + "사용 강화석: ");
         enchantMeta.setLore(item2Lore);
 
         enchant.setItemMeta(enchantMeta);
         return enchant;
-    }
-
-    private ItemStack removeEnchant() {
-        ItemStack removeEnchantItem = new ItemStack(Material.BARRIER);
-        ItemMeta nullItemFromGUIMeta = removeEnchantItem.getItemMeta();
-        nullItemFromGUIMeta.setDisplayName(ChatColor.RED + "[ 인첸트 제거 ]");
-        removeEnchantItem.setItemMeta(nullItemFromGUIMeta);
-
-        return removeEnchantItem;
     }
 
 }
