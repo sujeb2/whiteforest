@@ -16,7 +16,7 @@ public class IfPlayerNearBeaconHitullni {
         for(Player p : Bukkit.getOnlinePlayers()) {
             Location team1BeaconLoc = Whiteforest.plugin.getData().getLocation("teams.hitullni.location");
 
-            if (team1BeaconLoc != null && team1BeaconLoc.getNearbyPlayers(20).contains(p)) {
+            if (team1BeaconLoc != null && team1BeaconLoc.getNearbyPlayers(50).contains(p)) {
                 if (!Objects.equals(Whiteforest.plugin.getData().getString(p.getName() + ".team"), "hitullni")) {
                     Bukkit.broadcast(ChatColor.RED + p.getName() + "님이 팀 기지에 침입했습니다!", "teams.hitullni");
                     p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 20 * 3, 1), true);

@@ -1,21 +1,19 @@
 Star_Sara:
-  isLeader: true
+  isLeader: false
   beaconLeft: 0
-  team: sosumi
-  gotPailon: false
-  isNew: false
+  team: none
   ableToSpawnPailon: true
 
 _Winter__:
   isLeader: false
-  team: sosumi
+  team: none
   skindata: Star_Sara
   ableToSpawnPailon: true
   isNew: false
 
 tyi_kia:
   isLeader: false
-  team: peace
+  team: none
   skindata: Star_Sara
   ableToSpawnPailon: true
 
@@ -24,20 +22,20 @@ two6ean:
 
 Horing1807:
   isLeader: false
-  team: peace
+  team: none
   ableToSpawnPailon: true
   isNew: false
 
 tmon1031:
   isLeader: false
-  team: peace
+  team: none
   ableToSpawnPailon: true
   isNew: false
 
 _Devil_Stars_:
   isLeader: true
   beaconLeft: 0
-  team: peace
+  team: sosumi
   skindata: _Devil_Stars_
   gotPailon: false
   isNew: false
@@ -45,7 +43,7 @@ _Devil_Stars_:
 
 notSongro_:
   isLeader: true
-  team: hitullni
+  team: sodabean
   skindata: notSongro_
   gotPailon: false
   isNew: false
@@ -53,14 +51,14 @@ notSongro_:
 
 do_gi:
   isLeader: false
-  team: sodabean
-  skindata:
+  team: none
+  skindata: none
   isNew: false
   ableToSpawnPailon: true
 
 hanyul0967:
   isLeader: false
-  team: sodabean
+  team: none
   isNew: false
   skindata:
   ableToSpawnPailon: true
@@ -68,47 +66,41 @@ hanyul0967:
 s5779:
   isLeader: false
   isNew: false
-  team: sodabean
+  team: none
   skindata:
   ableToSpawnPailon: true
 
 Rose__2:
   isLeader: false
-  team: sosumi
+  team: none
   isNew: false
   skindata:
   ableToSpawnPailon: true
 
 kimstrolbabo:
   isLeader: false
-  team: hitullni
+  team: none
   isNew: false
   skindata:
   ableToSpawnPailon: true
 
-an_si:
-  isLeader: false
-  team: sodabean
-  isNew: false
-  ableToSpawnPailon: true
-
 112m:
   isLeader: false
-  team: peace
+  team: none
   isNew: false
   skindata:
   ableToSpawnPailon: true
 
 haile_08:
   isLeader: false
-  team: hitullni
+  team: none
   isNew: false
   skindata:
   ableToSpawnPailon: true
 
 Jun09743:
   isLeader: true
-  team: hitullni
+  team: peace
   gotPailon: false
   skindata: Jun09743
   isNew: false
@@ -116,7 +108,7 @@ Jun09743:
 
 song_tam:
   isLeader: true
-  team: sodabean
+  team: hitullni
   isNew: false
   gotPailon: false
   skindata: song_tam
@@ -124,14 +116,14 @@ song_tam:
 
 bihee:
   isLeader: false
-  team: hitullni
+  team: none
   isNew: false
   skindata:
   ableToSpawnPailon: true
 
 Bixp1e:
   isLeader: false
-  team: peace
+  team: none
   isNew: false
   skindata:
   ableToSpawnPailon: true
@@ -139,19 +131,29 @@ Bixp1e:
 ableToJoinEnd: false
 
 teams:
+  teamlist: [sosumi, sodabean, hitullni, peace]
+  list: [bihee, Bixp1e, song_tam, Jun09743, haile_08, 112m, kimstrolbabo, notSongro_, _Devil_Stars_, s5779, hanyul0967, Rose__2, tyi_kia]
   sosumi:
     x: 0
     y: 0
     z: 0
+    list: [_Devil_Stars_]
+    next: 10
   sodabean:
     x: 0
     y: 0
     z: 0
+    list: [notSongro, notSongro_, notSongro_]
+    next: 10
   hitullni:
     x: 0
     y: 0
     z: 0
+    list: [song_tam]
+    next: 10
   peace:
     x: 0
     y: 0
     z: 0
+    list: [Jun09743]
+    next: 10
