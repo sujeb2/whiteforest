@@ -14,6 +14,8 @@ public class TryJoinEnd implements Listener {
         if(e.getTo().getWorld().getEnvironment() == World.Environment.THE_END && !Whiteforest.plugin.getData().getBoolean("ableToJoinEnd")) {
             e.setCancelled(true);
             e.getPlayer().sendActionBar(ChatColor.RED + "현재 시간대에는 엔드에 들어갈수 없습니다.");
+        } else {
+            e.setCancelled(false);
         }
     }
 

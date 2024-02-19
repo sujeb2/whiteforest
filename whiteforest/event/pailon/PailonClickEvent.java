@@ -3,6 +3,7 @@ package com.songro.whiteforest.event.pailon;
 import com.songro.whiteforest.Whiteforest;
 import com.songro.whiteforest.inventory.ExpStore;
 import com.songro.whiteforest.inventory.Merge;
+import com.songro.whiteforest.inventory.PickTeammate;
 import com.songro.whiteforest.inventory.Relive;
 import com.songro.whiteforest.util.Team;
 import org.bukkit.Bukkit;
@@ -50,6 +51,7 @@ public class PailonClickEvent implements Listener {
                                         p1.teleport(warpLoc);
                                     }
                                 }
+                                p.sendActionBar(ChatColor.GREEN + "팀원을 불러왔습니다");
                             } else {
                                 p.sendMessage(ChatColor.RED + "리더가 아닙니다!");
                             }
@@ -78,6 +80,16 @@ public class PailonClickEvent implements Listener {
                             if(Whiteforest.plugin.getData().getBoolean(p.getName() + ".isLeader")) {
                                 p.closeInventory();
                                 p.openInventory(new Merge().mergeGUI());
+                            } else {
+                                p.sendMessage(ChatColor.RED + "리더가 아닙니다!");
+                            }
+                        }
+
+                        if(e.getCurrentItem().getType() == Material.BARRIER && e.getCurrentItem().getItemMeta().hasDisplayName()) {
+                            e.setCancelled(true);
+                            if(Whiteforest.plugin.getData().getBoolean(p.getName() + ".isLeader")) {
+                                p.closeInventory();
+                                p.openInventory(new PickTeammate().mergeGUI(p));
                             } else {
                                 p.sendMessage(ChatColor.RED + "리더가 아닙니다!");
                             }

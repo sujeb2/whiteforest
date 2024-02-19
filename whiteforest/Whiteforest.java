@@ -12,9 +12,11 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -57,6 +59,8 @@ public final class Whiteforest extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new EnforcementGUIEvent(), this);
             getServer().getPluginManager().registerEvents(new EnforcementSystem(), this);
             getServer().getPluginManager().registerEvents(new TryJoinEnd(), this);
+            getServer().getPluginManager().registerEvents(new PickTeammateGUIClickEvent(), this);
+            getServer().getPluginManager().registerEvents(new GenFakePlayerOnQuit(), this);
 
             new BukkitRunnable() {
                 @Override
@@ -68,7 +72,11 @@ public final class Whiteforest extends JavaPlugin {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    new SetEndJoinTime().onTryJoinEnd();
+                    try {
+                        new SetEndJoinTime().onTryJoinEnd();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }.runTaskTimer(this, 0, 20);
 
@@ -99,6 +107,7 @@ public final class Whiteforest extends JavaPlugin {
                     new IfPlayerNearBeaconSodabean().checkPlayer();
                 }
             }.runTaskTimer(this, 0, 20);
+
             new BukkitRunnable() {
                 @Override
                 public void run() {
@@ -174,6 +183,26 @@ public final class Whiteforest extends JavaPlugin {
                         }
                         if(!isCancelled()) {
                             cancel();
+                        }
+                    }
+                }
+            }.runTaskTimer(this, 0, 20);
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    for (Player p : Bukkit.getOnlinePlayers()) {
+                        if(p.getWorld().getEnvironment() == World.Environment.NETHER) {
+                            p.setFireTicks(20 * 2);
+                        }
+
+                        if(!p.isBanned()) {
+                            Whiteforest.plugin.getDeadPlayerData().set(p.getName() + ".isDead", false);
+                            try {
+                                Whiteforest.plugin.deadPlayerData.save(deadPlayerDataFile);
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                     }
                 }
