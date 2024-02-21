@@ -1,5 +1,8 @@
 package com.songro.whiteforest;
 
+import com.songro.whiteforest.cmd.reload;
+import com.songro.whiteforest.discord.buttonEvent;
+import com.songro.whiteforest.discord.initImpl;
 import com.songro.whiteforest.event.enchant.EnchantmentSystem;
 import com.songro.whiteforest.event.enforce.EnforcementSystem;
 import com.songro.whiteforest.event.gui.*;
@@ -8,6 +11,13 @@ import com.songro.whiteforest.event.pailon.PailonClickEvent;
 import com.songro.whiteforest.event.pailon.PailonSystem;
 import com.songro.whiteforest.event.player.*;
 import com.songro.whiteforest.repeat.*;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
+import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -22,6 +32,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 public final class Whiteforest extends JavaPlugin {
@@ -32,6 +43,7 @@ public final class Whiteforest extends JavaPlugin {
     public File deadPlayerDataFile;
     private FileConfiguration playerData;
     private FileConfiguration deadPlayerData;
+    public JDA jda;
 
     @Override
     public void onEnable() {
@@ -39,6 +51,25 @@ public final class Whiteforest extends JavaPlugin {
         log.info("[WHITEFOREST] Started.");
         createPlayerDataYml();
         createDeadPlayerDatayml();
+        jda = JDABuilder.createDefault("")
+                .setActivity(Activity.playing("Collecting Star dust."))
+                .addEventListeners(new initImpl())
+                .addEventListeners(new buttonEvent())
+                .build();
+
+        try {
+            jda.updateCommands().addCommands(
+                    Commands.slash("ping", "Calculate ping of the bot"),
+                    Commands.slash("register", "프로필 등록")
+                            .addOption(OptionType.STRING, "name", "profile name", true),
+                    Commands.slash("runcmd", "명령어 실행 (관리자 전용)")
+                            .addOption(OptionType.STRING, "cmd", "cmd", true),
+                    Commands.slash("pickteam", "팀원을 뽑습니다")
+            ).queue();
+        } catch (Exception e) {
+            log.severe("디스코드에 슬래시 명령어를 등록하지 못하였습니다.");
+            e.printStackTrace();
+        }
 
         try {
             getServer().getPluginManager().registerEvents(new PailonSystem(), this);
@@ -56,11 +87,10 @@ public final class Whiteforest extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new EnchantGUIEvent(), this);
             getServer().getPluginManager().registerEvents(new EnchantCloseEvent(), this);
             getServer().getPluginManager().registerEvents(new ChangeOre2Normal(), this);
-            getServer().getPluginManager().registerEvents(new EnforcementGUIEvent(), this);
-            getServer().getPluginManager().registerEvents(new EnforcementSystem(), this);
             getServer().getPluginManager().registerEvents(new TryJoinEnd(), this);
             getServer().getPluginManager().registerEvents(new PickTeammateGUIClickEvent(), this);
             getServer().getPluginManager().registerEvents(new GenFakePlayerOnQuit(), this);
+            Objects.requireNonNull(getCommand("reload")).setExecutor(new reload());
 
             new BukkitRunnable() {
                 @Override
@@ -114,7 +144,7 @@ public final class Whiteforest extends JavaPlugin {
                     Location pailonLoc = Whiteforest.plugin.getData().getLocation("teams.hitullni.location");
 
                     if(pailonLoc == null && Whiteforest.plugin.getDeadPlayerData().getBoolean("Jun09743.isDead")) {
-                        Bukkit.broadcast(Component.text(ChatColor.RED + "히틀니 팀이 붕괴했습니다!"));
+                        Bukkit.broadcast(Component.text(ChatColor.RED + "3팀이 붕괴했습니다!"));
                         Whiteforest.plugin.getData().set("Jun09743.isLeader", false);
                         try {
                             Whiteforest.plugin.getData().save(Whiteforest.plugin.playerDataFile);
@@ -134,7 +164,7 @@ public final class Whiteforest extends JavaPlugin {
                     Location pailonLoc = Whiteforest.plugin.getData().getLocation("teams.sosumi.location");
 
                     if(pailonLoc == null && Whiteforest.plugin.getDeadPlayerData().getBoolean("song_tam.isDead")) {
-                        Bukkit.broadcast(Component.text(ChatColor.RED + "고소미 팀이 붕괴했습니다!"));
+                        Bukkit.broadcast(Component.text(ChatColor.RED + "4팀이 붕괴했습니다!"));
                         Whiteforest.plugin.getData().set("song_tam.isLeader", false);
                         try {
                             Whiteforest.plugin.getData().save(Whiteforest.plugin.playerDataFile);
@@ -154,7 +184,7 @@ public final class Whiteforest extends JavaPlugin {
                     Location pailonLoc = Whiteforest.plugin.getData().getLocation("teams.peace.location");
 
                     if(pailonLoc == null && Whiteforest.plugin.getDeadPlayerData().getBoolean("_Devil_Stars_.isDead")) {
-                        Bukkit.broadcast(Component.text(ChatColor.RED + "평화 팀이 붕괴했습니다!"));
+                        Bukkit.broadcast(Component.text(ChatColor.RED + "2팀이 붕괴했습니다!"));
                         Whiteforest.plugin.getData().set("_Devil_Stars_.isLeader", false);
                         try {
                             Whiteforest.plugin.getData().save(Whiteforest.plugin.playerDataFile);
@@ -174,7 +204,7 @@ public final class Whiteforest extends JavaPlugin {
                     Location pailonLoc = Whiteforest.plugin.getData().getLocation("teams.sodabean.location");
 
                     if(pailonLoc == null && Whiteforest.plugin.getDeadPlayerData().getBoolean("notSongro_.isDead")) {
-                        Bukkit.broadcast(Component.text(ChatColor.RED + "소다맛완두콩 팀이 붕괴했습니다!"));
+                        Bukkit.broadcast(Component.text(ChatColor.RED + "1팀이 붕괴했습니다!"));
                         Whiteforest.plugin.getData().set("notSongro_.isLeader", false);
                         try {
                             Whiteforest.plugin.getData().save(Whiteforest.plugin.playerDataFile);
