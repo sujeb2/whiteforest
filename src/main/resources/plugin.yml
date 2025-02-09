@@ -1,0 +1,13 @@
+name: Whiteforest
+version: '${project.version}'
+main: com.songro.whiteforest.Whiteforest
+api-version: '1.21'
+depend:
+  - Citizens
+
+permissions:
+  teams.*:
+    teams.sosumi: false
+    teams.sodabean: false
+    teams.hitullni: false
+    teams.peace: false

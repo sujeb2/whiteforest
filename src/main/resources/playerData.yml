@@ -1,0 +1,105 @@
+notSongro_: # 성빈
+  isLeader: false
+  team: peace
+  skindata: notSongro_
+  gotPailon: false
+  isNew: false
+  ableToSpawnPailon: true
+
+been0828: # 지민
+  isLeader: true
+  team: sosumi
+  skindata: notSongro_
+  gotPailon: false
+  isNew: false
+  ableToSpawnPailon: true
+
+Lseungmin_: # 승민
+  isLeader: false
+  team: peace
+  skindata: notSongro_
+  gotPailon: false
+  isNew: false
+  ableToSpawnPailon: true
+
+.SordidCell12100: # 시후
+  isLeader: true
+  team: peace
+  skindata: notSongro_
+  gotPailon: false
+  isNew: false
+  ableToSpawnPailon: true
+
+.DinoonMP3922: # 은성
+  isLeader: false
+  team: sosumi
+  skindata: notSongro_
+  gotPailon: false
+  isNew: false
+  ableToSpawnPailon: true
+
+_Junnub: # 진운
+  isLeader: false
+  team: peace
+  skindata: notSongro_
+  gotPailon: false
+  isNew: false
+  ableToSpawnPailon: true
+
+gyujinkim10: # 규진
+  isLeader: false
+  team: sosumi
+  skindata: notSongro_
+  gotPailon: false
+  isNew: false
+  ableToSpawnPailon: true
+
+COD_holic141:
+  isLeader: false
+  team: sosumi
+  skindata: notSongro_
+  gotPailon: false
+  isNew: false
+  ableToSpawnPailon: true
+
+.taeseo622:
+  isLeader: false
+  team: sosumi
+  skindata: notSongro_
+  gotPailon: false
+  isNew: false
+  ableToSpawnPailon: true
+
+.Ksangsuk:
+  isLeader: false
+  team: peace
+  skindata: notSongro_
+  gotPailon: false
+  isNew: false
+  ableToSpawnPailon: true
+
+glekku:
+  isLeader: false
+  team: peace
+  skindata: notSongro_
+  gotPailon: false
+  isNew: false
+  ableToSpawnPailon: true
+
+ableToJoinEnd: false
+
+teams:
+  teamlist: [sosumi, peace]
+  list: [been0828, notSongro_, .DinoonMP3922, .taeseo622, COD_holic141, gyujinkim10, _Junnub, .Ksangsuk, .SordidCell12100, glekku, Lseungmin_]
+  sosumi:
+    x: 0
+    y: 0
+    z: 0
+    list: [been0828, .DinoonMP3922, .Ksangsuk, COD_holic141, gyujinkim10]
+    next: 10
+  peace:
+    x: 0
+    y: 0
+    z: 0
+    list: [_Junnub, .taeseo622, notSongro_, .SordidCell12100, glekku]
+    next: 10
